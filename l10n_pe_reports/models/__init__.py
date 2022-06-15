@@ -1,1 +1,1 @@
-from . import letra
+from . import letra_invoice
