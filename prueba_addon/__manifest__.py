@@ -1,6 +1,7 @@
 {
     "name": "Reportes de prueba",
     "version": "15.0.0",
+    "author": "Prueba",
     "depends": ["account", "sale"],
     "data": [
         "views/letras_views.xml",
