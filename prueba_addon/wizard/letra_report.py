@@ -21,7 +21,7 @@ class LetraReport(models.TransientModel):
     date_from = fields.Date('Desde', required=True)
     date_to = fields.Date('Hasta', required=True)
     
-    @api.multi
+    @api.model
     def action_report(self): 
         custom_value = {}   
         
