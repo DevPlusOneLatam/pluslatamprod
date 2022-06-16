@@ -17,5 +17,5 @@
         <field name="view_mode">kanban,tree,form</field>
         <field name="view_id" ref="letra_invoice_tree"/>
     </record>
-    <menuitem id="menu_account_letras" name="Letras" parent="account.menu_finance" sequence="10" action="action_letra_invoice_item_event"  />
+    <menuitem id="menu_account_letras" name="Letras" parent="account.menu_finance" sequence="10" action="action_letra_invoice_event"  />
 </odoo>
