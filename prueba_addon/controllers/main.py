@@ -22,7 +22,30 @@ class FinancialReportControllerInhe(http.Controller):
         report = ''
         for invoice in invoices:
             report += (datetime.strptime(
-                invoice.date_invoice,
+                invoice.invoice_date,
+                fields.DATE_FORMAT).strftime(
+                    '%d/%m/%Y') if invoice else '') + '||'
+            report += invoice.partner_id.name + '||'
+            report += '1|\n'
+        fp.write(report)
+        fp.seek(0)
+        file_data = fp.read()
+        fp.close()
+        return request.make_response(
+            file_data, headers=[
+                ('Content-Disposition', 'attachment; filename="report_invoice.txt"'),
+                ('Content-Type', 'text/plain')
+            ]
+        )
+        
+    @http.route('/prueba_addon/download_report_date_txt/<string:date_from>/<string:date_to>', type='http', auth='user')
+    def report_date_txt(self, date_from, date_to, **kw):
+        fp = tempfile.TemporaryFile('w+')
+        invoices = request.env['account.move'].search([('move_type', '=', 'out_invoice'), ('state', 'in', ['draft']), ('date', '>=', date_from), ('date', '<=', date_to)])
+        report = ''
+        for invoice in invoices:
+            report += (datetime.strptime(
+                invoice.invoice_date,
                 fields.DATE_FORMAT).strftime(
                     '%d/%m/%Y') if invoice else '') + '||'
             report += invoice.partner_id.name + '||'
@@ -53,7 +76,7 @@ class ExcelExportView(ExcelExport):
         columns_headers = ['Cliente', 'Fecha de Factura', 'Numero', 'Moneda', 'Total']
         rows = []
         for invoice in invoices:
-            rows.append([invoice.partner_id.name, invoice.date_invoice, invoice.number, invoice.company_currency_id.name, invoice.amount_total_company_signed])
+            rows.append([invoice.partner_id.name, invoice.invoice_date, invoice.number, invoice.company_currency_id.name, invoice.amount_total_company_signed])
 
         return request.make_response(
             self.from_data(columns_headers, rows),

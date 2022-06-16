@@ -5,6 +5,7 @@
     "depends": ["account", "sale"],
     "data": [
         "views/letras_views.xml",
+        "views/letra_report.xml",
         "security/ir.model.access.csv"
     ],
     'installable': True,
