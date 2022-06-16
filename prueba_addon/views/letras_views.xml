@@ -14,7 +14,6 @@
     <record id="action_letra_invoice_event" model="ir.actions.act_window">
         <field name="name">Letras</field>
         <field name="res_model">letra.invoice</field>
-        <field name="view_type">form</field>
         <field name="view_mode">kanban,tree,form</field>
         <field name="view_id" ref="letra_invoice_tree"/>
     </record>
