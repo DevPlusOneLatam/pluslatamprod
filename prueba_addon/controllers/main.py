@@ -16,18 +16,17 @@ from datetime import datetime
 class FinancialReportControllerInhe(http.Controller):
 
     @http.route('/prueba_addon/download_report_txt', type='http', auth='user')
-    def report_txt(self, date_from, date_to, **kw):
+    def report_txt(self, **kw):
         fp = tempfile.TemporaryFile('w+')
         invoices = request.env['account.move'].search([('type', '=', 'out_invoice'), ('state', 'in', ['draft'])])
         report = ''
-        related = None
         for invoice in invoices:
             report += (datetime.strptime(
                 invoice.date_invoice,
                 fields.DATE_FORMAT).strftime(
                     '%d/%m/%Y') if invoice else '') + '||'
             report += invoice.partner_id.name + '||'
-            report += '1|\n'  # TODO
+            report += '1|\n'
         fp.write(report)
         fp.seek(0)
         file_data = fp.read()
@@ -48,7 +47,7 @@ class ExcelExportView(ExcelExport):
         return super(ExcelExportView, self).__getattribute__(name)
 
     @http.route('/prueba_addon/download_report_xls', type='http', auth='user')
-    def download_xls_ple_sale(self, date_from, date_to, **kw):
+    def download_xls_ple_sale(self, **kw):
         model = "report_xls"
         invoices = request.env['account.move'].search([('type', '=', 'out_invoice'), ('state', 'in', ['draft'])])
         columns_headers = ['Cliente', 'Fecha de Factura', 'Numero', 'Moneda', 'Total']
