@@ -18,7 +18,7 @@ class FinancialReportControllerInhe(http.Controller):
     @http.route('/prueba_addon/download_report_txt', type='http', auth='user')
     def report_txt(self, **kw):
         fp = tempfile.TemporaryFile('w+')
-        invoices = request.env['account.move'].search([('type', '=', 'out_invoice'), ('state', 'in', ['draft'])])
+        invoices = request.env['account.move'].search([('move_type', '=', 'out_invoice'), ('state', 'in', ['draft'])])
         report = ''
         for invoice in invoices:
             report += (datetime.strptime(
@@ -49,7 +49,7 @@ class ExcelExportView(ExcelExport):
     @http.route('/prueba_addon/download_report_xls', type='http', auth='user')
     def download_xls_ple_sale(self, **kw):
         model = "report_xls"
-        invoices = request.env['account.move'].search([('type', '=', 'out_invoice'), ('state', 'in', ['draft'])])
+        invoices = request.env['account.move'].search([('move_type', '=', 'out_invoice'), ('state', 'in', ['draft'])])
         columns_headers = ['Cliente', 'Fecha de Factura', 'Numero', 'Moneda', 'Total']
         rows = []
         for invoice in invoices:
