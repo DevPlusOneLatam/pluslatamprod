@@ -72,7 +72,7 @@ class ExcelExportView(ExcelExport):
         columns_headers = ['Cliente', 'Fecha de Factura', 'Numero', 'Moneda', 'Total']
         rows = []
         for invoice in invoices:
-            rows.append([invoice.partner_id.name, invoice.invoice_date, invoice.number, invoice.company_currency_id.name, invoice.amount_total_company_signed])
+            rows.append([invoice.partner_id.name, invoice.invoice_date, invoice.name, invoice.company_currency_id.name, invoice.amount_total_company_signed])
 
         return request.make_response(
             self.from_data(columns_headers, rows),
