@@ -11,5 +11,5 @@ class LetraInvoice(models.Model):
     
     type_letra = fields.Selection([('descuento', 'Letra en descuento'), ('cartera', 'Letra en Cartera')])
     invoice_id = fields.Many2one(comodel_name='account.move', string='Factura')
-    invoice_draft_id = fields.Many2one(comodel_name='account.move', string='Factura', domain="[('state', 'in', ['draft']), ('type', '=', 'out_invoice')]")
+    invoice_draft_id = fields.Many2one(comodel_name='account.move', string='Factura borrador', domain="[('state', 'in', ['draft']), ('type', '=', 'out_invoice')]")
     amount_total = fields.Float(required=False, string='Valor de la letra')
