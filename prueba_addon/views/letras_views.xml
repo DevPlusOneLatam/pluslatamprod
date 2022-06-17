@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="letra_invoice_tree" model="ir.ui.view">
+        <field name="name">letra.invoice.tree</field>
+        <field name="model">letra.invoice</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="invoice_id" />
+                <field name="type_letra" />
+                <field name="amount_total" />
+            </tree>
+        </field>
+    </record>
+    <record id="action_letra_invoice_event" model="ir.actions.act_window">
+        <field name="name">Letras</field>
+        <field name="res_model">letra.invoice</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="view_id" ref="letra_invoice_tree"/>
+    </record>
+    <menuitem id="menu_account_letras" name="Letras" parent="account.menu_finance" sequence="10" action="action_letra_invoice_event"  />
+</odoo>

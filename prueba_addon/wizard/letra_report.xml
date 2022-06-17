@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="letra_report_form" model="ir.ui.view">
+        <field name="name">letra.report.form</field>
+        <field name="model">letra.report</field>
+        <field name="arch" type="xml">
+            <form string="Generar reporte" class="o_sale_order">
+                <p class="oe_grey">
+                       Reporte de ejemplo
+                </p>
+                <group>
+                    <group>
+                        <field name="date_from"/>
+                        <field name="company_id" invisible="True"/>
+                    </group>
+                    <group>                        
+                        <field name="date_to"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="action_report" string="Generar archivo TXT" type="object" class="btn-primary"/>
+                    <button string="Cancelar" class="btn-default" special="cancel"/>
+                </footer>
+            </form>               
+        </field>
+    </record>
+
+    <record id="action_letra_report" model="ir.actions.act_window">
+        <field name="name">Reporte de Ejemplo</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">letra.report</field>
+        <field name="view_mode">form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="target">new</field>
+    </record>
+       
+    <menuitem id="prueba_addon_reports_menu" name="Reporte de Letras" parent="account.menu_finance_reports" sequence="5" />
+
+    <menuitem id="carbonope_account_report_menu_sales"
+            name="Registro de Letras"
+            parent="prueba_addon_reports_menu"
+            action="prueba_addon.action_letra_report"
+            sequence="1"/>
+</odoo>
