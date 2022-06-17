@@ -23,7 +23,7 @@ class FinancialReportControllerInhe(http.Controller):
         for invoice in invoices:
             report += (invoice.invoice_date.strftime(
                     '%d/%m/%Y') if invoice else '') + '||'
-            report += invoice.partner_id.name + '||' + invoice.amount_tax
+            report += invoice.partner_id.name + '||' + str(invoice.amount_tax)
             report += '|\n'
         fp.write(report)
         fp.seek(0)
@@ -44,7 +44,7 @@ class FinancialReportControllerInhe(http.Controller):
         for invoice in invoices:
             report += (invoice.invoice_date.strftime(
                     '%d/%m/%Y') if invoice else '') + '||'
-            report += invoice.partner_id.name + '||' + invoice.amount_tax
+            report += invoice.partner_id.name + '||' + str(invoice.amount_tax)
             report += '|\n'
         fp.write(report)
         fp.seek(0)
