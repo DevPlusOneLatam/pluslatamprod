@@ -21,7 +21,7 @@ class LetraReport(models.TransientModel):
     date_from = fields.Date('Desde', required=True)
     date_to = fields.Date('Hasta', required=True)
     
-    def action_report(self): 
+    def action_report_txt(self): 
         custom_value = {}   
         
         def convert_date(date):

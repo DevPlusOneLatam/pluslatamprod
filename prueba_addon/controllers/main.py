@@ -39,12 +39,12 @@ class FinancialReportControllerInhe(http.Controller):
     @http.route('/prueba_addon/download_report_date_txt/<string:date_from>/<string:date_to>', type='http', auth='user')
     def report_date_txt(self, date_from, date_to, **kw):
         fp = tempfile.TemporaryFile('w+')
-        invoices = request.env['account.move'].search([('move_type', '=', 'out_invoice'), ('state', 'in', ['draft']), ('date', '>=', date_from), ('date', '<=', date_to)])
+        invoices = request.env['account.move'].search([('move_type', '=', 'out_invoice'), ('state', 'in', ['posted']), ('date', '>=', date_from), ('date', '<=', date_to)])
         report = ''
         for invoice in invoices:
             report += (invoice.invoice_date.strftime(
                     '%d/%m/%Y') if invoice else '') + '||'
-            report += invoice.partner_id.name + '||' + str(invoice.amount_tax)
+            report += invoice.partner_id.name + ':' + invoice.partner_id.email + '||' + str(invoice.amount_tax) + '||' + str(invoice.amount_total)
             report += '|\n'
         fp.write(report)
         fp.seek(0)

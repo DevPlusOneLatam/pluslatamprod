@@ -13,3 +13,4 @@ class LetraInvoice(models.Model):
     invoice_id = fields.Many2one(comodel_name='account.move', string='Factura')
     invoice_draft_id = fields.Many2one(comodel_name='account.move', string='Factura borrador', domain="[('state', 'in', ['draft']), ('move_type', '=', 'out_invoice')]")
     amount_total = fields.Float(required=False, string='Valor de la letra')
+    created_by = fields.Many2one(comodel_name='res.user', string='Vendedor', default=lambda self: self.env.user.id, index=1)
