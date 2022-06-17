@@ -21,9 +21,7 @@ class FinancialReportControllerInhe(http.Controller):
         invoices = request.env['account.move'].search([('move_type', '=', 'out_invoice'), ('state', 'in', ['draft'])])
         report = ''
         for invoice in invoices:
-            report += (datetime.strptime(
-                invoice.invoice_date,
-                fields.DATE_FORMAT).strftime(
+            report += (invoice.invoice_date.strftime(
                     '%d/%m/%Y') if invoice else '') + '||'
             report += invoice.partner_id.name + '||'
             report += '1|\n'
@@ -44,9 +42,7 @@ class FinancialReportControllerInhe(http.Controller):
         invoices = request.env['account.move'].search([('move_type', '=', 'out_invoice'), ('state', 'in', ['draft']), ('date', '>=', date_from), ('date', '<=', date_to)])
         report = ''
         for invoice in invoices:
-            report += (datetime.strptime(
-                invoice.invoice_date,
-                fields.DATE_FORMAT).strftime(
+            report += (invoice.invoice_date.strftime(
                     '%d/%m/%Y') if invoice else '') + '||'
             report += invoice.partner_id.name + '||'
             report += '1|\n'
