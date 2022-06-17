@@ -35,3 +35,10 @@ class LetraReport(models.TransientModel):
             'target': 'self',
         }
     
+    def action_report_xls(self):
+        return {
+            'name': 'FEC',
+            'type': 'ir.actions.act_url',
+            'url': '/prueba_addon/download_report_date_xls/' + str(self.date_from) + '/' + str(self.date_to),
+            'target': 'self',
+        }

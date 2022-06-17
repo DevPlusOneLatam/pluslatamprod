@@ -19,6 +19,7 @@
                 </group>
                 <footer>
                     <button name="action_report_txt" string="Generar archivo TXT" type="object" class="btn-primary"/>
+                    <button name="action_report_xls" string="Generar archivo XLS" type="object" class="btn-primary"/>
                     <button string="Cancelar" class="btn-default" special="cancel"/>
                 </footer>
             </form>               

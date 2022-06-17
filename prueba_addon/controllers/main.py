@@ -82,3 +82,23 @@ class ExcelExportView(ExcelExport):
                 ('Content-Type', self.content_type)
             ]
         )
+
+
+    @http.route('/prueba_addon/download_report_date_xls/<string:date_from>/<string:date_to>', type='http', auth='user')
+    def download_xls_ple_sale(self, date_from, date_to, **kw):
+        model = "report_xls"
+        invoices = request.env['account.move'].search([('move_type', '=', 'out_invoice'), ('state', 'in', ['posted']), ('date', '>=', date_from), ('date', '<=', date_to)])
+        columns_headers = ['Cliente', 'Cliente Email', 'Fecha de Factura', 'Numero', 'Moneda', 'Total']
+        rows = []
+        for invoice in invoices:
+            rows.append([invoice.partner_id.name, invoice.partner_id.email, invoice.invoice_date, invoice.name, invoice.company_currency_id.name, invoice.amount_total])
+
+        return request.make_response(
+            self.from_data(columns_headers, rows),
+            headers=[
+                ('Content-Disposition', 'attachment; filename="%s"'
+                 % self.filename(model)),
+                ('Content-Type', self.content_type)
+            ]
+        )
+    
