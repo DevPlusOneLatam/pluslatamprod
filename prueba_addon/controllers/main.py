@@ -68,7 +68,7 @@ class ExcelExportView(ExcelExport):
     @http.route('/prueba_addon/download_report_xls', type='http', auth='user')
     def download_xls_ple_sale(self, **kw):
         model = "report_xls"
-        invoices = request.env['account.move'].search([('move_type', '=', 'out_invoice'), ('state', 'in', ['draft'])])
+        invoices = request.env['account.move'].search([('move_type', '=', 'out_invoice'), ('state', 'in', ['posted'])])
         columns_headers = ['Cliente', 'Fecha de Factura', 'Numero', 'Moneda', 'Total']
         rows = []
         for invoice in invoices:
