@@ -23,8 +23,8 @@ class FinancialReportControllerInhe(http.Controller):
         for invoice in invoices:
             report += (invoice.invoice_date.strftime(
                     '%d/%m/%Y') if invoice else '') + '||'
-            report += invoice.partner_id.name + '||'
-            report += '1|\n'
+            report += invoice.partner_id.name + '||' + invoice.amount_tax
+            report += '|\n'
         fp.write(report)
         fp.seek(0)
         file_data = fp.read()
@@ -44,8 +44,8 @@ class FinancialReportControllerInhe(http.Controller):
         for invoice in invoices:
             report += (invoice.invoice_date.strftime(
                     '%d/%m/%Y') if invoice else '') + '||'
-            report += invoice.partner_id.name + '||'
-            report += '1|\n'
+            report += invoice.partner_id.name + '||' + invoice.amount_tax
+            report += '|\n'
         fp.write(report)
         fp.seek(0)
         file_data = fp.read()
@@ -72,7 +72,7 @@ class ExcelExportView(ExcelExport):
         columns_headers = ['Cliente', 'Fecha de Factura', 'Numero', 'Moneda', 'Total']
         rows = []
         for invoice in invoices:
-            rows.append([invoice.partner_id.name, invoice.invoice_date, invoice.name, invoice.company_currency_id.name, invoice.amount_total_company_signed])
+            rows.append([invoice.partner_id.name, invoice.invoice_date, invoice.name, invoice.company_currency_id.name, invoice.amount_total])
 
         return request.make_response(
             self.from_data(columns_headers, rows),
