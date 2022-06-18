@@ -37,5 +37,5 @@ class LetraInvoice(models.Model):
         for item_line in vals['letra_items_ids']:
             amount_total += item_line[2]['amount']
         vals['amount_total'] = amount_total
-        res = super(LetraInvoice, self).create(vals)
+        res = super(LetraInvoice, self).write(vals)
         return res
