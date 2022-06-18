@@ -6,24 +6,26 @@
         <field name="type">form</field>
         <field name="arch" type="xml">
             <form string="Letra" class="o_sale_order">
-                <group>
+                <sheet string="Letra">
                     <group>
-                        <field name="invoice_id"/>
-                        <field name="type_letra"/>
+                        <group>
+                            <field name="invoice_id"/>
+                            <field name="type_letra"/>
+                        </group>
+                        <group>                        
+                            <field name="amount_total"/>
+                        </group>
                     </group>
-                    <group>                        
-                        <field name="amount_total"/>
-                    </group>
-                </group>
-                <notebook>
-                    <page string="Detalle">
-                        <field name="letra_items_ids" nolabel="1" widget="one2many_list" mode="tree">
-                            <tree string="Linea de letras" editable="botton">
-                                <field name="amount" />
-                            </tree>
-                        </field>
-                    </page>
-                </notebook>
+                    <notebook>
+                        <page string="Detalle">
+                            <field name="letra_items_ids" nolabel="1" widget="one2many_list" mode="tree">
+                                <tree string="Linea de letras" editable="botton">
+                                    <field name="amount" />
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
             </form>
         </field>
     </record>

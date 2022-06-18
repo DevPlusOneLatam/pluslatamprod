@@ -20,5 +20,13 @@ class LetraInvoice(models.Model):
     @api.model
     def create(self, vals):
         vals['name'] = self.env['ir.sequence'].next_by_code('letra.invoice')
+        amount_total = 0.0
+        for item_line in vals['letra_items_ids']:
+            _logger.info(item_line)
+            _logger.info(item_line[0])
+            _logger.info(item_line[1])
+            _logger.info(item_line[2])
+            amount_total += item_line[2]['amount']
+        vals['amount_total'] = amount_total
         res = super(LetraInvoice, self).create(vals)
         return res
