@@ -1,17 +1,12 @@
-# -*- coding: utf-8 -*-
-# Part of Odoo. See LICENSE file for full copyright and licensing details.
-
-import shutil, os
-import time
 from datetime import datetime, timedelta
-import unicodedata
-import base64
-import io
 from io import StringIO
+import logging
 
 from odoo import api, fields, models, _
 from odoo.addons import decimal_precision as dp
 from odoo.exceptions import UserError
+
+_logger = logging.getLogger(__name__)
 
 class LetraReport(models.TransientModel):
     _name = "letra.report"
@@ -28,6 +23,8 @@ class LetraReport(models.TransientModel):
             dt = datetime.strptime(date, "%Y-%m-%d")
             return dt.strftime("%d%m%Y")
         
+        _logger.info('Fecha de inicio: ' + str(self.date_from))
+        _logger.error('Fecha final: ' + str(self.date_to))
         return {
             'name': 'FEC',
             'type': 'ir.actions.act_url',
