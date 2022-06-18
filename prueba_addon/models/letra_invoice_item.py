@@ -9,5 +9,5 @@ class LetraInvoice(models.Model):
     _name = "letra.invoice.item"
     _description = "Detalle de Letras de facturas"
     
-    letra_id = fields.Many2one(comodel_name='letra.invoice', string='Letra')
+    letra_invoice_id = fields.Many2one(comodel_name='letra.invoice', string='Letra')
     amount = fields.Float(required=False, string='Valor del item')
