@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="letra_invoice_form" model="ir.ui.view">
+        <field name="name">letra.invoice.form</field>
+        <field name="model">letra.invoice</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Letra" class="o_sale_order">
+                <sheet string="Letra">
+                    <group>
+                        <group>
+                            <field name="invoice_id"/>
+                            <field name="type_letra"/>
+                        </group>
+                        <group>                        
+                            <field name="amount_total" attrs="{'readonly': True}"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Detalle">
+                            <field name="letra_items_ids" nolabel="1" widget="one2many_list" mode="tree">
+                                <tree string="Linea de letras" editable="botton">
+                                    <field name="label" />
+                                    <field name="amount" />
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="letra_invoice_tree" model="ir.ui.view">
+        <field name="name">letra.invoice.tree</field>
+        <field name="model">letra.invoice</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="type_letra" />
+                <field name="amount_total" />
+            </tree>
+        </field>
+    </record>
+    <record id="action_letra_invoice_event" model="ir.actions.act_window">
+        <field name="name">Letras</field>
+        <field name="res_model">letra.invoice</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="view_id" ref="letra_invoice_tree"/>
+    </record>
+    <menuitem id="menu_account_letras" name="Letras" parent="account.menu_finance" sequence="10" action="action_letra_invoice_event"  />
+</odoo>

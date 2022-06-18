@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="ir_sequence_letras" model="ir.sequence">
+        <field name="name">sequence-letras</field>
+        <field name="code">letra.invoice</field>
+        <field name="prefix">LETRA-</field>
+        <field name="padding">8</field>
+    </record>
+</odoo>
