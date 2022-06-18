@@ -17,7 +17,11 @@
                 </group>
                 <notebook>
                     <page string="Detalle">
-                        <field name="letra_items_ids"/>
+                        <field name="letra_items_ids" nolabel="1" widget="one2many_list" mode="tree">
+                            <tree string="Linea de letras" editable="botton">
+                                <field name="amount" />
+                            </tree>
+                        </field>
                     </page>
                 </notebook>
             </form>
