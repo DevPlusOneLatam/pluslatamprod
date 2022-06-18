@@ -15,6 +15,11 @@
                         <field name="amount_total"/>
                     </group>
                 </group>
+                <notebook>
+                    <page string="Detalle">
+                        <field name="letra_items_ids"/>
+                    </page>
+                </notebook>
             </form>
         </field>
     </record>

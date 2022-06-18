@@ -14,6 +14,7 @@ class LetraInvoice(models.Model):
     invoice_id = fields.Many2one(comodel_name='account.move', string='Factura')
     amount_total = fields.Float(required=False, string='Valor de la letra')
     created_by = fields.Many2one(comodel_name='res.users', string='Vendedor', default=lambda self: self.env.user.id, index=1)
+    letra_items_ids = fields.One2many('letra.invoice.item', 'letra_invoice_id', string='Item', readonly=False, copy=True)
 
 
     @api.model

@@ -6,6 +6,7 @@
     "data": [
         "views/letras_views.xml",
         "wizard/letra_report.xml",
+        "data/ir_sequence.xml",
         "security/ir.model.access.csv"
     ],
     'installable': True,
