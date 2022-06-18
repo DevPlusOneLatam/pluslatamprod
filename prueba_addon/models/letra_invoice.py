@@ -34,6 +34,10 @@ class LetraInvoice(models.Model):
     def write(self, vals):
         amount_total = 0.0
         for item_line in vals['letra_items_ids']:
+            _logger.info(item_line)
+            _logger.info(item_line[0])
+            _logger.info(item_line[1])
+            _logger.info(item_line[2])
             amount_total += item_line[2]['amount']
         vals['amount_total'] = amount_total
         res = super(LetraInvoice, self).write(vals)
