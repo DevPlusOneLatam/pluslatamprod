@@ -31,7 +31,6 @@ class LetraInvoice(models.Model):
         res = super(LetraInvoice, self).create(vals)
         return res
 
-    @api.model
     def write(self, vals):
         amount_total = 0.0
         for item_line in vals['letra_items_ids']:
