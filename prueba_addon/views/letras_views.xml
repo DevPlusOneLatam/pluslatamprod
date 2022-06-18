@@ -13,7 +13,7 @@
                             <field name="type_letra"/>
                         </group>
                         <group>                        
-                            <field name="amount_total"/>
+                            <field name="amount_total" attrs="{'readonly': True}"/>
                         </group>
                     </group>
                     <notebook>
