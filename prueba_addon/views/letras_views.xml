@@ -1,11 +1,30 @@
 <?xml version="1.0"?>
 <odoo>
+    <record id="letra_invoice_form" model="ir.ui.view">
+        <field name="name">letra.invoice.form</field>
+        <field name="model">letra.invoice</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Letra" class="o_sale_order">
+                <group>
+                    <group>
+                        <field name="invoice_id"/>
+                        <field name="type_letra"/>
+                    </group>
+                    <group>                        
+                        <field name="amount_total"/>
+                    </group>
+                </group>
+            </form>
+        </field>
+    </record>
+
     <record id="letra_invoice_tree" model="ir.ui.view">
         <field name="name">letra.invoice.tree</field>
         <field name="model">letra.invoice</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="invoice_id" />
+                <field name="name" />
                 <field name="type_letra" />
                 <field name="amount_total" />
             </tree>
