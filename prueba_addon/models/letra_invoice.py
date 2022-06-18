@@ -17,7 +17,7 @@ class LetraInvoice(models.Model):
     created_by = fields.Many2one(comodel_name='res.users', string='Vendedor', default=lambda self: self.env.user.id, index=1)
 
 
-
+    @api.model
     def create(self, vals):
         vals['name'] = self.env['ir.sequence'].next_by_code('letra.invoice')
         res = super(LetraInvoice, self).create(vals)
