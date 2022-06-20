@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="invoice_report_form" model="ir.ui.view">
+        <field name="name">invoice.report.form</field>
+        <field name="model">invoice.report</field>
+        <field name="arch" type="xml">
+            <form string="Generar reporte" class="o_sale_order">
+                <p class="oe_grey">
+                       Sunat Report de Ventas
+                </p>
+                
+                <footer>
+                   
+                    <button name="action_report" string="Generar archivo" type="object" class="btn-primary"/>
+                    <button string="Cancelar" class="btn-default" special="cancel"/>
+                </footer>
+            </form>               
+        </field>
+    </record>
+
+    <record id="action_invoice_report" model="ir.actions.act_window">
+        <field name="name">Reporte de Facturas de Ventas</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">invoice.report</field>
+        <field name="view_mode">form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="target">new</field>
+    </record>
+       
+    <menuitem id="prueba_reporte_reports_menu" name="Reporte Facturas de Ventas" parent="account.menu_finance_reports" sequence="5" />
+
+    <menuitem id="account_report_menu_sales"
+            name="Sunat Report de Ventas"
+            parent="prueba_reporte_reports_menu"
+            action="prueba_reporte.action_invoice_report"
+            sequence="1"/>
+</odoo>
