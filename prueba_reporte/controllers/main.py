@@ -3,7 +3,7 @@ import json
 from odoo import http
 from odoo import _, api, fields, models
 from odoo.http import content_disposition, request
-from odoo.addons.web.controllers.main import reportExport
+from odoo.addons.web.controllers.main import ExcelExport
 from odoo.addons.web.controllers.main import _serialize_exception
 from odoo.tools import html_escape
 from odoo.tools import DEFAULT_SERVER_DATE_FORMAT
@@ -13,7 +13,7 @@ import re
 from datetime import datetime
 
 
-class InvoiceReportView(reportExport):
+class InvoiceReportView(ExcelExport):
     def __getattribute__(self,name):
         if name == 'fmt':
             raise AttributeError()
