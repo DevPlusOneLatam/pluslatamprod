@@ -1,11 +1,10 @@
 {
-    "name": "Sunat Reporte de Ventas",
+    "name": "Reporte de Ventas",
     "version": "15.0.0",
     "author": "Prueba",
     "depends": ["account", "sale"],
     "data": [
         "wizard/invoice_report.xml",
-        "data/ir_sequence.xml",
         "security/ir.model.access.csv"
     ],
     'installable': True,
