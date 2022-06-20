@@ -17,8 +17,8 @@ class InvoiceReport(models.TransientModel):
     def action_report(self):
         custom_value={}
 
-        def convert_date(date):
-            #dt = datetime.strptime(date, "%Y-%m-%d")
+        #def convert_date(date):
+           
         return {
             'name': 'FEC',
             'type': 'ir.actions.act_url',
