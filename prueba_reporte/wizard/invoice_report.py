@@ -8,7 +8,7 @@ from odoo.exceptions import UserError
 
 _logger = logging.getLogger(__name__)
 
-class FacturaVentaReport(models.TransientModel):
+class InvoiceReport(models.TransientModel):
     _name= "invoice.report"
     _description = "Reporte Factura"
 

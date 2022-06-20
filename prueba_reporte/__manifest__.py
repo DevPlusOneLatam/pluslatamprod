@@ -4,7 +4,7 @@
     "author": "Prueba",
     "depends": ["account", "sale"],
     "data": [
-        "wizard/letra_report.xml",
+        "wizard/invoice_report.xml",
         "data/ir_sequence.xml",
         "security/ir.model.access.csv"
     ],
