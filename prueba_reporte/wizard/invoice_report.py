@@ -13,9 +13,10 @@ class InvoiceReport(models.TransientModel):
     _description = "Reporte Factura"
 
    # n_Factura,fecha_reg,fecha_venc,moneda,tipoCambio,cond_pago,nombre_cliente,ruc_cliente,total_sinIgv,igv,total_igv
+    company_id = fields.Many2one('res.company', 'Company', default=lambda self: self.env.user.company_id.id, index=1)
 
     def action_report(self):
-        custom_value={}
+        #custom_value={}
 
         #def convert_date(date):
            

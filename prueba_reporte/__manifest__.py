@@ -1,5 +1,5 @@
 {
-    "name": "Reporte de Ventas",
+    "name": "Reporte Factura de Ventas",
     "version": "15.0.0",
     "author": "Prueba",
     "depends": ["account", "sale"],

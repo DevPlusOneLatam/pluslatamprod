@@ -19,7 +19,7 @@ class InvoiceReportView(ExcelExport):
             raise AttributeError()
         return super(InvoiceReportView,self).__getattribute__(name)
 
-    @http.route('/prueba_reporte/download_report_xls',type='http',auth='user')
+    @http.route('/prueba_reporte/download_report_xls',type='http' , auth='user')
     def download_xls_ple_sale(self, **kw):
         model = "report_xls"
         invoices = request.env['account.move'].search([('move_type','=','out_invoice')])
@@ -32,7 +32,7 @@ class InvoiceReportView(ExcelExport):
         return request.make_response(
             self.from_data(columns_headers, rows),
             headers=[
-                ('Content-Disposition', 'attachment; filename='%s''
+                ('Content-Disposition', 'attachment; filename="%s"'
                  % self.filename(model)),
                 ('Content-Type', self.content_type)
             ]
