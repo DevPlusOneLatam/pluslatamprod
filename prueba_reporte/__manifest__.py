@@ -4,7 +4,8 @@
     "author": "Prueba",
     "depends": ["account", "sale"],
     "data": [
-        "wizard/invoice_report.xml"
+        "wizard/invoice_report.xml",
+        "security/ir.model.access.csv"
     ],
     'installable': True,
     'application': True,
