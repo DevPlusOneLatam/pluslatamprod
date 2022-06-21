@@ -1,2 +1,2 @@
-from . import sales_invoice
-from . import sales_invoice_item
+#from . import sales_invoice
+#from . import sales_invoice_item
