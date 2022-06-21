@@ -22,13 +22,15 @@ class InvoiceReportView(ExcelExport):
     @http.route('/prueba_reporte/download_report_xls',type='http' , auth='user')
     def download_xls_ple_sale(self, **kw):
         model = "report_xls"
-        invoices = request.env['account.move'].search([('move_type','=','out_invoice')])
+  
+        invoices = request.env['account.move'].search([('move_type', '=', 'out_invoice'), ('state', 'in', ['posted'])])
          # n_Factura,fecha_reg,fecha_venc,moneda,tipoCambio,cond_pago,nombre_cliente,ruc_cliente,total_sinIgv,igv,total_igv
-        columns_headers = ['Nº Factura','Fecha Registro','Fecha Vencimiento','Moneda','Tipo Cambio','Condicion Pago','Nombre Cliente','Nº Ruc Cliente','Total Sin IGV','IGV','TOTAL CON IGV']
+        # columns_headers = ['Nº Factura','Fecha Registro','Fecha Vencimiento','Moneda','Tipo Cambio','Condicion Pago','Nombre Cliente','Nº Ruc Cliente','Total Sin IGV','IGV','TOTAL CON IGV']
+        columns_headers = ['Cliente', 'Fecha de Factura', 'Numero', 'Moneda', 'Total']
         rows = []
         for invoice in invoices:
-            rows.append([invoice.name,invoice.invoice_date,invoice.invoice_date_due,invoice.currency_id,invoice.currency_id,invoice.payment_state,invoice.invoice_partner_display_name,invoice.partner_id.vat,invoice.amount_untaxed_signed,invoice.amount_tax_signed,invoice.amount_residual])
-
+           # rows.append([invoice.name,invoice.invoice_date,invoice.invoice_date_due,invoice.currency_id,invoice.currency_id,invoice.payment_state,invoice.invoice_partner_display_name,invoice.partner_id.vat,invoice.amount_untaxed_signed,invoice.amount_tax_signed,invoice.amount_residual])
+            rows.append([invoice.partner_id.name, invoice.invoice_date, invoice.name, invoice.company_currency_id.name, invoice.amount_total])
         return request.make_response(
             self.from_data(columns_headers, rows),
             headers=[
